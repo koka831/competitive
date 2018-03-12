@@ -1,4 +1,5 @@
 use std::io;
+use std::cmp;
 
 
 fn read<T>() -> Vec<T>
@@ -18,10 +19,11 @@ where T:
 fn main() {
 
     let (n, k) = {
-        let val = read::<usize>();
+        let val = read::<isize>();
         (val[0], val[1])
     };
 
+    /*
     let mut cnt = (n - k) * (n - k + 1) / 2;
 
     'outer: for i in (k * 2)..(n + 1) {
@@ -30,6 +32,17 @@ fn main() {
                 cnt += 1;
             }
         }
+    }
+    */
+
+    // after saw the editorial
+    let mut cnt = 0;
+    for b in 1..(n + 1) {
+        let p = n / b;
+        let q = n % b;
+        cnt += p * cmp::max(0, b - k) + cmp::max(0, q - k + 1);
+
+        if k == 0 { cnt -= 1; }
     }
 
     println!("{}", cnt);
