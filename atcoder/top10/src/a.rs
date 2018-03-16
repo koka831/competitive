@@ -116,10 +116,3 @@ fn main7() {
     // 失敗があるケースではOptionalにしてunwrap_orで
     let b = a.unwrap_or((-1, -1));
 }
-
-
-
-
-
-
-
