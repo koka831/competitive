@@ -1,0 +1,14 @@
+6 7 4
+cathy 4
+eijiro 2
+alice 6
+dad 3
+betty 5
+franca 1
+2 eijiro 1
+3 alice 6
+4 alice 1
+4 franca 3
+5 cathy 7
+9 dad 2
+12 betty 4

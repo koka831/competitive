@@ -1,0 +1,8 @@
+3 4 3
+itiro 16
+jiro 26
+saburo 326
+1 itiro 16
+1 jiro 6
+2 jiro 26
+3 itiro 16
