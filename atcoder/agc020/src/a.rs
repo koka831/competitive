@@ -1,0 +1,30 @@
+use std::io;
+
+
+fn read<T>() -> Vec<T>
+where T:
+    std::str::FromStr,
+    T::Err: std::fmt::Debug {
+
+    let stdin = io::stdin();
+    let mut buf = String::new();
+    stdin.read_line(&mut buf).unwrap();
+    buf.split(' ')
+        .map(|s| s.trim().parse().unwrap())
+        .collect()
+}
+
+
+fn main() {
+
+    let (n, a, b) = {
+        let input = read::<usize>();
+        (input[0], input[1], input[2])
+    };
+
+    if (b - a) % 2 == 0 {
+        println!("Alice");
+    } else {
+        println!("Borys");
+    }
+}
