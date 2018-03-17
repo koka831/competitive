@@ -41,19 +41,27 @@ fn main() {
     b.sort();
 
     let mut cnt = 0;
-    let mut len = a.len();
-    while len > 0 && b.len() > 0 {
+    while b.len() > 0 {
 
         let bi = b.pop().unwrap();
         let mut off = 0;
-        while len > 0 && off < a.len() {
+        let mut max_y = 0;
+        let mut max_i = 100000;
+
+        while off < a.len() {
             let ai = a[off];
             if bi.0 > ai.0 && bi.1 > ai.1 { 
-                cnt += 1;
-                len -= 1;
-                a.remove(off);
-                break; 
-            } else { off += 1; }
+                if max_y <= ai.1 {
+                    max_y = ai.1;
+                    max_i = off;
+                }
+            }
+            off += 1;
+        }
+
+        if max_i < 10000 {
+            cnt += 1;
+            a.remove(max_i);
         }
     }
 
