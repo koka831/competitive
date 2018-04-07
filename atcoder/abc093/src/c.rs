@@ -24,4 +24,26 @@ where T:
 
 fn main() {
 
+    let mut num = read::<usize>();
+    num.sort();
+
+    let d_a = num[2] - num[1];
+    let d_b = num[2] - num[0];
+
+    match ((d_a % 2 == 0), (d_b % 2 == 0)) {
+        (true, true) => println!("{}", (d_a + d_b) / 2),
+        (false, false) => {
+            let d_a = d_a - 1;
+            let d_b = d_b - 1;
+            println!("{}", 1 + (d_a + d_b) / 2);
+        },
+        (false, true) => {
+            let d_a = d_a + 1;
+            println!("{}", 1 + (d_a + d_b) / 2);
+        },
+        (true, false) => {
+             let d_b = d_b + 1;
+            println!("{}", 1 + (d_a + d_b) / 2);
+        }
+    }
 }

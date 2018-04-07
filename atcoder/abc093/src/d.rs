@@ -23,5 +23,20 @@ where T:
 }
 
 fn main() {
-
+    let n = read_one::<usize>();
+    println!("{}", n);
+    for i in 0..n {
+        let (a, b) = {
+            let num = read::<usize>();
+            (num[0], num[1])
+        };
+        let max = a * b;
+        let mut pair = 0;
+        for j in 1..max {
+            if j < max / j { pair += 2; }
+            else { break; }
+        }
+        pair -= 1;
+        println!("{}", pair);
+    }
 }

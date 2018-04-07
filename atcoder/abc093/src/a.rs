@@ -1,5 +1,5 @@
 use std::io;
-use std::cmp;
+use std::collections::BTreeSet;
 
 fn read<T>() -> Vec<T>
 where T:
@@ -24,4 +24,14 @@ where T:
 
 fn main() {
 
+    let a = read_one::<String>();
+    let mut bt = BTreeSet::new();
+    for s in a.chars() {
+        bt.insert(s);
+    }
+    if bt.len() == 3 {
+        println!("Yes");
+    } else {
+        println!("No");
+    }
 }
