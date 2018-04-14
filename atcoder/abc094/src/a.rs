@@ -26,4 +26,14 @@ where T:
 
 fn main() {
 
+    let (a, b, x) = {
+        let i = read::<isize>();
+        (i[0], i[1], i[2])
+    };
+
+    if a <= x && x <= a + b {
+        println!("YES");
+    } else {
+        println!("NO");
+    }
 }

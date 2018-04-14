@@ -26,4 +26,21 @@ where T:
 
 fn main() {
 
+    let n = read_one::<usize>();
+
+    let mut x = read::<usize>();
+    let y = x.clone();
+
+    x.sort();
+
+    let large = x[n/2];
+    let small = x[(n-2)/2]; 
+
+    for i in 0..n {
+        if y[i] <= small {
+            println!("{}", x[n/2]);
+        } else if y[i] >= large {
+            println!("{}", x[n/2 - 1]);
+        }
+    }
 }
