@@ -1,3 +1,4 @@
+#![deny(unused_imports)]
 use std::io;
 use std::cmp;
 
@@ -74,7 +75,6 @@ fn main() {
         vec.remove(prev_choice);
         println!("{:?}", vec);
     }
-
 
     println!("{}", score);
 }
