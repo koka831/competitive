@@ -3,4 +3,8 @@ name = "top10"
 version = "0.1.0"
 authors = ["koka <koka.code@gmail.com>"]
 
+
+[[bin]]
+path = 'src/c.rs'
+name = 'c'
 [dependencies]
