@@ -1,3 +1,7 @@
+pub mod uf;
+pub mod bsearch;
+
+
 #[cfg(test)]
 mod tests {
     #[test]
