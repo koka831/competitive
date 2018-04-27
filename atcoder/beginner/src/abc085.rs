@@ -27,9 +27,25 @@ where T:
     buf.trim().parse().unwrap()
 }
 
-fn dist(a: &Vec<f32>, b: &Vec<f32>) -> f32 {
-    ((a[0] - b[0]).powi(2) + (a[1] - b[1]).powi(2)).sqrt()
-}
 
 fn main() {
+    let (n, y) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+
+    let mut flg = 0;
+
+    'outer: for j in 0..(n + 1) {
+        'inner: for k in 0..(n - j + 1) {
+            if 10000 * j + 5000 * k + 1000 * (n - j - k) == y {
+                println!("{} {} {}", j, k, n - j - k);
+                flg = 1;
+                break 'outer;
+            }
+        }
+    }
+    if flg == 0 {
+        println!("-1 -1 -1");
+    }
 }
