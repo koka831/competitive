@@ -3,4 +3,12 @@ name = "beginner"
 version = "0.1.0"
 authors = ["koka <koka.code@gmail.com>"]
 
+[[bin]]
+path = 'src/arc004.rs'
+name = 'arc004'
+
+[[bin]]
+path = 'src/abc085.rs'
+name = 'abc085'
+
 [dependencies]
