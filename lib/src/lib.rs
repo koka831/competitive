@@ -1,5 +1,6 @@
 pub mod uf;
 pub mod bsearch;
+pub mod graph;
 
 
 #[cfg(test)]

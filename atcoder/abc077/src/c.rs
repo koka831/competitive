@@ -2,8 +2,6 @@
 use std::io;
 use std::cmp;
 
-#[allow(unused)]
-static MOD : i64 = (1e9 as i64) + 7;
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>
@@ -69,10 +67,33 @@ impl<T: Ord> BinarySearch<T> for [T] {
 }
 
 fn main() {
-    // let n = read_one::<usize>();
+    let _n = read_one::<usize>();
+    let mut top = read::<usize>();
+    let mut mid = read::<usize>();
+    let mut btm = read::<usize>();
+    top.sort();
+    mid.sort();
+    btm.sort();
 
+    let mut pat = 0;
 
-    let a = [1, 2, 3, 4, 5, 6, 7, 8];
-    println!("{}", a.lower_bound(&2));
-    println!("{}", a.upper_bound(&2));
+    // for i for j => O(n^2)
+    /*
+    for i in btm.iter() {
+        let bound_i = mid.lower_bound(&i);
+        for j in &mid[0..bound_i] {
+            let bound_j = top.lower_bound(&j);
+            pat += bound_j;
+        }
+    }
+    */
+
+    // for mid[i] lower * upper => O(n log n)
+    for i in mid.iter() {
+        let btm_bound = btm.upper_bound(&i);
+        let top_bound = top.lower_bound(&i);
+        pat += (btm.len() - btm_bound) * top_bound;
+    }
+
+    println!("{}", pat);
 }

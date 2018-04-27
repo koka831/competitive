@@ -1,6 +1,19 @@
 use std::cmp;
 
 
+#[allow(unused)]
+macro_rules! debug {
+    ($($v:expr),*) => { {
+        use ::std::io::Write;
+        $(let _ = writeln!(::std::io::stderr(), "{} = {:?}", stringify!($v), $v);)*
+    } }
+}
+
+#[allow(unused)]
+static MOD : i64 = (1e9 as i64) + 7;
+
+
+
 pub trait BinarySearch<T> {
     fn lower_bound(&self, &T) -> usize;
     fn upper_bound(&self, &T) -> usize;
