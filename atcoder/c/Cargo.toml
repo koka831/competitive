@@ -1,0 +1,14 @@
+[package]
+name = "c"
+version = "0.1.0"
+authors = ["koka <koka.code@gmail.com>"]
+
+[[bin]]
+path = 'src/arc037.rs'
+name = 'arc037'
+
+[[bin]]
+path = 'src/abc023.rs'
+name = 'abc023'
+
+[dependencies]
