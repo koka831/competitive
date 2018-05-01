@@ -11,4 +11,8 @@ name = 'arc037'
 path = 'src/abc023.rs'
 name = 'abc023'
 
+[[bin]]
+path = 'src/atc001.rs'
+name = 'atc001'
+
 [dependencies]
