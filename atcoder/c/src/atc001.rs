@@ -1,6 +1,8 @@
-#![allow(unused_imports)]
+#![allow(unused)]
 use std::io;
 use std::cmp;
+
+const INF: usize = 100_000_000_000;
 
 
 #[allow(dead_code)]
@@ -27,16 +29,40 @@ where T:
     buf.trim().parse().unwrap()
 }
 
-fn check_bound(x: usize, y: usize, w: usize, h: usize) -> bool {
-    return (0 <= x && x < w) && (0 <= y && y < h)
+fn check_bound(x: isize, y: isize, w: usize, h: usize) -> bool {
+    return (0 <= x && x < w as isize) && (0 <= y && y < h as isize)
 }
 
 type Pos = (usize, usize);
 
+/*
 fn dfs(f: &mut Vec<Vec<char>>, x: usize, y: usize) -> bool {
     f[x][y] = 's';
-
+    let n = f.len();
+    let mut dist = vec![n + 1; n];
+    let mut queue = ::std::collections::VecDeque::new();
+    dist[] = 0;
+    queue.push_back(s);
     true
+}
+*/
+
+fn bfs(g: &Vec<Vec<usize>>, s: usize) -> Vec<usize> {
+    let n = g.len();
+    let mut dist = vec![n + 1; n];
+    let mut queue = ::std::collections::VecDeque::new();
+    dist[s] = 0;
+    queue.push_back(s);
+    while let Some(u) = queue.pop_front() {
+        for &v in &g[u] {
+            if dist[v] == n + 1 {
+                dist[v] = dist[u] + 1;
+                // if s == '#' { /* return true */}
+                queue.push_back(v);
+            }
+        }
+    }
+    dist
 }
 
 fn main() {
