@@ -25,5 +25,15 @@ where T:
 }
 
 fn main() {
+    let (a, b) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+
+    if b < a {
+        println!("{}", a - 1);
+    } else {
+        println!("{}", a);
+    }
 
 }

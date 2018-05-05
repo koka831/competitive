@@ -25,5 +25,32 @@ where T:
 }
 
 fn main() {
+    let (h, w) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+    let mut vec = Vec::new();
+    for _ in 0..h {
+        let chr: Vec<char> = read_one::<String>()
+            .chars().collect();
+        vec.push(chr);
+    }
 
+    let mut flg = true;
+    for j in 0..h { for k in 0..w {
+        if vec[j][k] == '#' {
+            let mut f = false;
+            if 0 < j && vec[j - 1][k] == '#' { f = true; }
+            if 0 < k && vec[j][k - 1] == '#' { f = true; }
+            if j < h - 1 && vec[j + 1][k] == '#' { f = true; }
+            if k < w - 1 && vec[j][k + 1] == '#' { f = true; }
+            if !f { flg = false; break; }
+        }
+    }}
+
+    if flg {
+        println!("Yes");
+    } else {
+        println!("No"); 
+    }
 }

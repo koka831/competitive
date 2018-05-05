@@ -1,4 +1,5 @@
 use std::io;
+use std::cmp;
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>
@@ -25,5 +26,9 @@ where T:
 }
 
 fn main() {
+    let mut num = read::<usize>();
+    num.sort();
+    let k = read_one::<usize>();
 
+    println!("{}", usize::pow(2, k as u32) * num[2] + num[1] + num[0]);
 }
