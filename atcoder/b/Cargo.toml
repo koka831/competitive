@@ -7,4 +7,13 @@ authors = ["koka <koka.code@gmail.com>"]
 path = 'src/abc042.rs'
 name = 'abc042'
 
+[[bin]]
+path = 'src/abc043.rs'
+name = 'abc043'
+
+[[bin]]
+path = 'src/abc044.rs'
+name = 'abc044'
+
+
 [dependencies]
