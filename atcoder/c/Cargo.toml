@@ -15,4 +15,12 @@ name = 'abc023'
 path = 'src/atc001.rs'
 name = 'atc001'
 
+[[bin]]
+path = 'src/abc051.rs'
+name = 'abc051'
+
+[[bin]]
+path = 'src/abc054.rs'
+name = 'abc054'
+
 [dependencies]
