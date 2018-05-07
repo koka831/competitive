@@ -14,7 +14,7 @@ where T:
 
     let mut buf = String::new();
     io::stdin().read_line(&mut buf).unwrap();
-    buf.split(' ')
+    buf.split_whitespace()
         .map(|s| s.trim().parse().unwrap())
         .collect()
 }
