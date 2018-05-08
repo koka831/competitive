@@ -35,4 +35,8 @@ name = 'abc061'
 path = 'src/abc064.rs'
 name = 'abc064'
 
+[[bin]]
+path = 'src/abc070.rs'
+name = 'abc070'
+
 [dependencies]
