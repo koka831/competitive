@@ -59,4 +59,12 @@ name = 'apc001'
 path = 'src/agc018.rs'
 name = 'agc018'
 
+[[bin]]
+path = 'src/abc006.rs'
+name = 'abc006'
+
+[[bin]]
+path = 'src/arc063.rs'
+name = 'arc063'
+
 [dependencies]
