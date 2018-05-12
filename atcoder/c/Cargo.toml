@@ -67,4 +67,8 @@ name = 'abc006'
 path = 'src/arc063.rs'
 name = 'arc063'
 
+[[bin]]
+path = 'src/arc066.rs'
+name = 'abc066'
+
 [dependencies]
