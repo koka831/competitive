@@ -1,8 +1,14 @@
 use std::io;
+use std::cmp;
 
 
 fn main() {
+    let (a, b) = {
+        let i = read::<isize>();
+        (i[0], i[1])
+    };
 
+    println!("{}", cmp::max(cmp::max(a + b, a - b), a * b));
 }
 
 

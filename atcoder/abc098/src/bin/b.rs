@@ -1,8 +1,30 @@
 use std::io;
+use std::cmp;
 
 
 fn main() {
+    let n = read_one::<usize>();
+    let s = read_one::<String>().chars().collect::<Vec<char>>();
 
+    let mut cnt = 0;
+    for i in 0..n {
+        let mut a = s.clone();
+        a.split_off(i);
+        let b = &s[i..n];
+        let mut cnt_i = 0;
+
+        a.sort();
+        a.dedup();
+
+        for c in a {
+            if b.contains(&c) {
+                cnt_i += 1;
+            }
+        }
+        cnt = cmp::max(cnt, cnt_i);
+    }
+
+    println!("{}", cnt);
 }
 
 
