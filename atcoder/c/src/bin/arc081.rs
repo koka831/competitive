@@ -1,13 +1,12 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/agc022/tasks/agc022_a
+/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
 fn main() {
-    let  s = read_one::<String>().chars().collect::<Vec<char>>();
-    let mut s_clone = s.clone();
-    s_clone.sort();
+    let n = read_one::<usize>();
+    let a = read::<usize>();
 
-    println!("{:?}", s);
+    println!("{}", n);
 }
 
 
