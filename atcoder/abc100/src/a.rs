@@ -1,6 +1,16 @@
 use std::io;
 
 fn main() {
+    let (a, b) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+
+    if a <= 8 && b <= 8 {
+        println!("Yay!");
+    } else {
+        println!(":(");
+    }
 
 }
 
@@ -24,6 +34,6 @@ where T:
     T::Err: std::fmt::Debug {
 
     let mut buf = String::new();
-    io.stdin().read_line(&mut buf).unwrap();
+    io::stdin().read_line(&mut buf).unwrap();
     buf.trim().parse().unwrap()
 }
