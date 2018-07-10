@@ -1,7 +1,7 @@
 use std::io;
 
 fn main() {
-
+    
 }
 
 #[allow(dead_code)]

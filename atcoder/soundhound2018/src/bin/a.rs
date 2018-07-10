@@ -2,7 +2,18 @@ use std::io;
 
 
 fn main() {
+    let (a, b) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
 
+    if a + b == 15 {
+        println!("+");
+    } else if a * b == 15 {
+        println!("*");
+    } else {
+        println!("x");
+    }
 }
 
 

@@ -2,7 +2,16 @@ use std::io;
 
 
 fn main() {
+    let s = read_one::<String>().chars()
+        .collect::<Vec<char>>();
+    let w = read_one::<usize>();
+    let mut ans = String::new();
 
+    for i in 0..s.len() {
+        if i % w == 0 { ans += s[i].to_string().as_str(); }
+    }
+
+    println!("{}", ans);
 }
 
 
