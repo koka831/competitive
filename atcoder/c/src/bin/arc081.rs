@@ -3,10 +3,25 @@ use std::io;
 
 /// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
 fn main() {
-    let n = read_one::<usize>();
-    let a = read::<usize>();
+    let _n = read_one::<usize>();
+    let mut a = read::<usize>();
+    a.sort_by(|a, b| b.cmp(a));
 
-    println!("{}", n);
+    let mut vec = Vec::new();
+    for a_t in a.iter() {
+        let cnt = a.iter().filter(|&x| x == a_t).count();
+        if cnt >= 4 { vec.push(a_t); vec.push(a_t); }
+        else if cnt >= 2 { vec.push(a_t); }
+    }
+
+    println!("{:?}", vec);
+    println!("{:?}", a);
+    if vec.len() >= 4 {
+        vec.sort_by(|a, b| b.cmp(a));
+        println!("{}", vec[0] * vec[2]);
+    } else {
+        println!("0");
+    }
 }
 
 
