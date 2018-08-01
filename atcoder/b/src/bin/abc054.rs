@@ -21,7 +21,7 @@ fn main() {
     println!("default a: {:?}", a);
     for i in 0..(n - m) { for j in 0..(n - m) {
             println!("{:?}", &a[i..(m + i)][j..(m + i)]);
-        if a[i..m][j..m] == b[..] {
+        if a[i..(m + i - 1)][j..(m + i - 1)][i..(m+i-1)] == b[..] {
             flg = true;
         }
     }}

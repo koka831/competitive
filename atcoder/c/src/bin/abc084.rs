@@ -1,15 +1,16 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/arc060/tasks/arc060_a
-/// (枚数) * A == (選んだカードの和) となるようなknapsack
+/// https://beta.atcoder.jp/contests/abc084/tasks/abc084_c
 fn main() {
-    let (n, a) = {
+    let n = read_one::<usize>();
+    let mut vec = Vec::new();
+    for _ in 1..n {
         let i = read::<usize>();
-        (i[0], i[1])
-    };
+        vec.push((i[0], i[1], i[2]));
+    }
 
-    let x = read::<usize>();
+    println!("{:?}", vec);
 }
 
 

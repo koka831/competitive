@@ -1,15 +1,28 @@
 use std::io;
+use std::cmp;
 
 
-/// https://beta.atcoder.jp/contests/arc060/tasks/arc060_a
-/// (枚数) * A == (選んだカードの和) となるようなknapsack
 fn main() {
-    let (n, a) = {
-        let i = read::<usize>();
-        (i[0], i[1])
-    };
+    let n = read_one::<usize>();
+    let mut t = Vec::new();
+    for _ in 0..n {
+        t.push(read_one::<usize>());
+    }
 
-    let x = read::<usize>();
+    let mut ans = 200;
+    for i in 0..1 << n {
+        let mut lhv = 0;
+        let mut rhv = 0;
+        for j in 0..n {
+            if (i & 1 << j) != 0 {
+                lhv += t[j];
+            } else {
+                rhv += t[j];
+            }
+        } 
+        ans = cmp::min(ans, cmp::max(lhv, rhv));
+    }
+    println!("{}", ans);
 }
 
 

@@ -1,15 +1,21 @@
 use std::io;
+use std::collections::VecDeque; // push_back, pop_front
 
 
-/// https://beta.atcoder.jp/contests/arc060/tasks/arc060_a
-/// (枚数) * A == (選んだカードの和) となるようなknapsack
+/// https://beta.atcoder.jp/contests/abc088/tasks/abc088_d
 fn main() {
-    let (n, a) = {
+    let (h, w) = {
         let i = read::<usize>();
         (i[0], i[1])
     };
 
-    let x = read::<usize>();
+    let mut vec = Vec::new();
+    for _ in 0..h {
+        let row = read_one::<String>().chars().collect::<Vec<char>>();
+        vec.push(row);
+    }
+
+    println!("{:?}", vec);
 }
 
 
