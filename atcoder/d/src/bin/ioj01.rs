@@ -24,7 +24,33 @@ fn main() {
         }
     }}
     println!("{}", dp[0][w]);
+
 }
+/*
+struct DP {
+    n: usize,
+    w: usize,
+    dp: Vec<Vec<isize>>,
+    ws: Vec<usize>,
+    vs: Vec<usize>,
+}
+
+impl DP {
+    fn new(n: usize, w: usize, dp: Vec<Vec<isize>>, ws: Vec<usize>, vs: Vec<usize>) -> Self {
+        DP { n, w, dp, ws, vs }
+    }
+
+    fn rec(&mut self, i: usize, j: usize) -> usize {
+        if self.dp[i][j] != -1 { return self.dp[i][j] as usize; }
+        let mut res = 0;
+        if self.n == 0 { res = 0; }
+        else if j < self.ws[i] { res = self.rec(i + 1, j); }
+        else { res = ::std::cmp::max(self.rec(i + 1, j), self.rec(i + 1, j - self.ws[i]) + self.vs[i]); }
+        res
+    }
+}
+*/
+
 
 
 #[allow(dead_code)]
