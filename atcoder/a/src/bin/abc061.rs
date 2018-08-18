@@ -2,17 +2,13 @@ use std::io;
 
 
 fn main() {
-    let s = read_one::<String>()
-        .chars().collect::<Vec<char>>();
-    let mut flg = true;
-    for i in 0..s.len() {
-        if s[i] == ' ' {
-            if s[i - 1] != s[i + 1] { flg = false; }
-        }
-    }
+    let (a, b, c) = {
+        let i = read::<isize>();
+        (i[0], i[1], i[2])
+    };
 
-    if flg { println!("YES"); }
-    else { println!("NO"); }
+    if a <= c && c <= b { println!("Yes"); }
+    else { println!("No"); }
 }
 
 

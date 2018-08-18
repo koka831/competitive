@@ -2,16 +2,12 @@ use std::io;
 
 
 fn main() {
-    let s = read_one::<String>()
-        .chars().collect::<Vec<char>>();
-    let mut flg = true;
-    for i in 0..s.len() {
-        if s[i] == ' ' {
-            if s[i - 1] != s[i + 1] { flg = false; }
-        }
-    }
+    let (r, g, b) = {
+        let i = read::<isize>();
+        (i[0], i[1], i[2])
+    };
 
-    if flg { println!("YES"); }
+    if (r * 100 + g * 10 + b) % 4 == 0 { println!("YES"); }
     else { println!("NO"); }
 }
 

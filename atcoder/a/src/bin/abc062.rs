@@ -2,17 +2,27 @@ use std::io;
 
 
 fn main() {
-    let s = read_one::<String>()
-        .chars().collect::<Vec<char>>();
-    let mut flg = true;
-    for i in 0..s.len() {
-        if s[i] == ' ' {
-            if s[i - 1] != s[i + 1] { flg = false; }
-        }
-    }
+    let (x, y) = {
+        let i = read::<isize>();
+        (i[0], i[1])
+    };
 
-    if flg { println!("YES"); }
-    else { println!("NO"); }
+    let gx = match x {
+        1|3|5|7|8|10|12 => 1,
+        4|6|9|11 => 2,
+        2 => 3,
+        _ => 4,
+    };
+
+    let gy = match y {
+        1|3|5|7|8|10|12 => 1,
+        4|6|9|11 => 2,
+        2 => 3,
+        _ => 4,
+    };
+
+    if gx == gy { println!("Yes"); }
+    else { println!("No"); }
 }
 
 
