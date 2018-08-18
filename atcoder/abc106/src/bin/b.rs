@@ -6,15 +6,14 @@ fn main() {
     let mut ans = 0;
     for i in 1..(n + 1) {
         if i % 2 == 0 { continue; }
-        let mut cnt = 0;
-        for j in 1..(i + 1) {
-            if i % j == 0 { cnt += 1; }
-        }
-        if cnt == 8 { ans += 1; }
+        if count_divisor(i) == 8 { ans += 1; }
     }
     println!("{}", ans);
 }
 
+fn count_divisor(n: usize) -> usize {
+    (1..(n + 1)).filter(|x| n % x == 0).count()
+}
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>
