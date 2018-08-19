@@ -3,32 +3,36 @@ use std::io;
 
 fn main() {
     let (n, m) = {
-        let i = read::<usize>();
+        let i = read::<isize>();
         (i[0], i[1])
     };
 
-    let mut a = Vec::new();
-    let mut b = Vec::new();
+    let mut ab = Vec::new();
+    let mut cd = Vec::new();
 
     for _ in 0..n {
-        a.push(read_one::<String>().chars().collect::<Vec<char>>());
-    }
-    for _ in 0..m {
-        b.push(read_one::<String>().chars().collect::<Vec<char>>());
+        let i = read::<isize>();
+        ab.push((i[0], i[1]));
     }
 
-    let mut flg = false;
-    // println!("a: {:?}", a);
-    // println!("b: {:?}", b);
-    for i in 0..(n - m + 1) { for j in 0..(n - m + 1) {
-        let mut tmp = true;
-        for l in 0..m { for m in 0..m {
-            if a[l + i][m + j] != b[l][m] { tmp = false; }
-        }}
-        if tmp == true { flg = true; break; }
-    }}
-    if flg { println!("Yes"); }
-    else { println!("No"); }
+    for _ in 0..m {
+        let i = read::<isize>();
+        cd.push((i[0], i[1]));
+    }
+
+    for &(a, b) in &ab {
+        let mut dist = 20isize.pow(9);
+        let mut ans = 0;
+        for i in 0..cd.len() {
+            let (c, d) = cd[i];
+            let tmp_dist = (c - a).abs() + (d - b).abs();
+            if tmp_dist < dist {
+                dist = tmp_dist;
+                ans = i + 1;
+            }
+        }
+        println!("{}", ans);
+    }
 }
 
 
