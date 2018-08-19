@@ -1,3 +1,5 @@
+
+
 pub struct UnionFind {
     pub par: Vec<usize>,
     pub rank: Vec<usize>,
@@ -14,17 +16,19 @@ impl UnionFind {
     fn find(&mut self, x: usize) -> usize {
         if self.par[x] == x { x }
         else {
-            let p = self.par[x];
-            let pp = self.find(p);
-            self.par[x] = pp;
-            pp
+            let y = self.par[x];
+            self.par[x] = self.find(y);
+            self.par[x]
         }
+    }
+
+    fn same(&mut self, x: usize, y: usize) -> bool {
+        self.find(x) == self.find(y)
     }
 
     fn unite(&mut self, x: usize, y: usize) {
         let x = self.find(x);
         let y = self.find(y);
-
         if x == y { return; }
 
         match self.rank[x].cmp(&self.rank[y]) {
@@ -39,6 +43,5 @@ impl UnionFind {
                 self.par[y] = x;
             }
         }
-
     }
 }
