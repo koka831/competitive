@@ -1,22 +1,25 @@
 use std::io;
-use std::collections::BTreeMap;
+use std::cmp;
 
 
-/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
+/// https://beta.atcoder.jp/contests/arc090/tasks/arc090_a
 fn main() {
-    let _n = read_one::<usize>();
-    let an = read::<isize>();
-    let mut bm = BTreeMap::new();
-
-    for a in an {
-        *bm.entry(a).or_insert(0) += 1;
+    let n = read_one::<usize>();
+    let mut an = Vec::new();
+    for _ in 0..2 {
+        an.push(read::<usize>());
+    }
+    let mut ans = 0;
+    for i in 0..n {
+        let mut cnt = 0;
+        for j in 0..n + 1 {
+            if j <= i { cnt += an[0][j]; }
+            else { cnt += an[1][j - 1]; }
+        }
+        ans = cmp::max(ans, cnt);
     }
 
-    let mut vec = bm.into_iter().filter(|&(_, v)| v >= 2).collect::<Vec<_>>();
-    vec.sort_by_key(|&(k, _)| -k);
-    if vec.len() < 2 { println!("0"); }
-    else if vec[0].1 >= 4 { println!("{}", vec[0].0 * vec[0].0); }
-    else { println!("{}", vec[0].0 * vec[1].0)}
+    println!("{}", ans);
 }
 
 

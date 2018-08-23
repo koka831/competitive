@@ -1,22 +1,31 @@
 use std::io;
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 
-/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
+/// https://beta.atcoder.jp/contests/arc082/tasks/arc082_a
 fn main() {
-    let _n = read_one::<usize>();
+    let _ = read_one::<usize>();
     let an = read::<isize>();
-    let mut bm = BTreeMap::new();
+    let mut hm = HashMap::new();
+    let am = an.clone().iter().map(|i| i - 1).collect::<Vec<_>>();
+    let ap = an.clone().iter().map(|i| i + 1).collect::<Vec<_>>();
 
     for a in an {
-        *bm.entry(a).or_insert(0) += 1;
+        *hm.entry(a).or_insert(0) += 1;
     }
 
-    let mut vec = bm.into_iter().filter(|&(_, v)| v >= 2).collect::<Vec<_>>();
-    vec.sort_by_key(|&(k, _)| -k);
-    if vec.len() < 2 { println!("0"); }
-    else if vec[0].1 >= 4 { println!("{}", vec[0].0 * vec[0].0); }
-    else { println!("{}", vec[0].0 * vec[1].0)}
+    for a in am {
+        *hm.entry(a).or_insert(0) += 1;
+    }
+
+    for a in ap {
+        *hm.entry(a).or_insert(0) += 1;
+    }
+
+    let mut v = hm.iter().collect::<Vec<_>>();
+    v.sort_by_key(|&(_, v)| -v);
+
+    println!("{:?}", v[0].1);
 }
 
 

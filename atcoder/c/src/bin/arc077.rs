@@ -1,22 +1,24 @@
 use std::io;
-use std::collections::BTreeMap;
+use std::collections::VecDeque;
 
 
-/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
+/// https://beta.atcoder.jp/contests/arc077/tasks/arc077_a
 fn main() {
-    let _n = read_one::<usize>();
+    let n = read_one::<usize>();
     let an = read::<isize>();
-    let mut bm = BTreeMap::new();
-
-    for a in an {
-        *bm.entry(a).or_insert(0) += 1;
+    let mut v = VecDeque::new();
+    for i in 0..n {
+        if i % 2 == 0 { v.push_back(an[i]); }
+        else { v.push_front(an[i]); }
     }
 
-    let mut vec = bm.into_iter().filter(|&(_, v)| v >= 2).collect::<Vec<_>>();
-    vec.sort_by_key(|&(k, _)| -k);
-    if vec.len() < 2 { println!("0"); }
-    else if vec[0].1 >= 4 { println!("{}", vec[0].0 * vec[0].0); }
-    else { println!("{}", vec[0].0 * vec[1].0)}
+    let mut v = v.into_iter().map(|x| x.to_string()).collect::<Vec<_>>(); 
+    if n % 2 != 0 {
+        v.reverse();
+        println!("{}", v.join(" "));
+    } else {
+        println!("{}", v.join(" "));
+    }
 }
 
 

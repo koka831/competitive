@@ -2,21 +2,28 @@ use std::io;
 use std::collections::BTreeMap;
 
 
-/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
+/// https://beta.atcoder.jp/contests/arc086/tasks/arc086_a
 fn main() {
-    let _n = read_one::<usize>();
-    let an = read::<isize>();
+    let (_, k) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+    let an = read::<usize>();
     let mut bm = BTreeMap::new();
-
     for a in an {
         *bm.entry(a).or_insert(0) += 1;
     }
 
-    let mut vec = bm.into_iter().filter(|&(_, v)| v >= 2).collect::<Vec<_>>();
-    vec.sort_by_key(|&(k, _)| -k);
-    if vec.len() < 2 { println!("0"); }
-    else if vec[0].1 >= 4 { println!("{}", vec[0].0 * vec[0].0); }
-    else { println!("{}", vec[0].0 * vec[1].0)}
+    let mut ans = 0;
+    let mut cnt = 0;
+    let mut bm = bm.iter().collect::<Vec<_>>();
+    bm.sort_by_key(|&(_, v)| -v);
+    for v in bm.iter().rev() {
+        if bm.len() - cnt <= k { break; }
+        cnt += 1;
+        ans += *v.1;
+    }
+    println!("{}", ans);
 }
 
 

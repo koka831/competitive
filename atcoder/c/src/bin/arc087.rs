@@ -1,22 +1,23 @@
 use std::io;
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 
-/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
+/// https://beta.atcoder.jp/contests/arc087/tasks/arc087_a
+/// **only remove**
 fn main() {
-    let _n = read_one::<usize>();
+    let _ = read_one::<usize>();
     let an = read::<isize>();
-    let mut bm = BTreeMap::new();
-
+    let mut cnt = 0;
+    let mut hm = HashMap::new();
     for a in an {
-        *bm.entry(a).or_insert(0) += 1;
+        *hm.entry(a).or_insert(0) += 1;
     }
 
-    let mut vec = bm.into_iter().filter(|&(_, v)| v >= 2).collect::<Vec<_>>();
-    vec.sort_by_key(|&(k, _)| -k);
-    if vec.len() < 2 { println!("0"); }
-    else if vec[0].1 >= 4 { println!("{}", vec[0].0 * vec[0].0); }
-    else { println!("{}", vec[0].0 * vec[1].0)}
+    for a in hm.keys() {
+        let &v = hm.get(a).unwrap();
+        cnt += if v < *a { v } else { v - *a };
+    }
+    println!("{}", cnt);
 }
 
 

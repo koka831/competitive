@@ -1,22 +1,14 @@
 use std::io;
-use std::collections::BTreeMap;
 
 
-/// https://beta.atcoder.jp/contests/arc081/tasks/arc081_a
+/// https://beta.atcoder.jp/contests/arc085/tasks/arc085_a
+/// t = 1900 * m + 100 * (n - m)
 fn main() {
-    let _n = read_one::<usize>();
-    let an = read::<isize>();
-    let mut bm = BTreeMap::new();
-
-    for a in an {
-        *bm.entry(a).or_insert(0) += 1;
-    }
-
-    let mut vec = bm.into_iter().filter(|&(_, v)| v >= 2).collect::<Vec<_>>();
-    vec.sort_by_key(|&(k, _)| -k);
-    if vec.len() < 2 { println!("0"); }
-    else if vec[0].1 >= 4 { println!("{}", vec[0].0 * vec[0].0); }
-    else { println!("{}", vec[0].0 * vec[1].0)}
+    let (n, m) = {
+        let i = read::<u32>();
+        (i[0], i[1])
+    };
+    println!("{}", (1900 * m + 100 * (n - m)) * 2u32.pow(m));
 }
 
 

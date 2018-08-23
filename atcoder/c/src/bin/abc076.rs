@@ -3,7 +3,9 @@ use std::io;
 
 /// https://beta.atcoder.jp/contests/abc076/tasks/abc076_c
 fn main() {
-
+    let s = read_one::<String>()
+        .chars().collect::<Vec<char>>();
+    let t = read_one::<String>();
 }
 
 
