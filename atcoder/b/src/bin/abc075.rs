@@ -1,5 +1,4 @@
 use std::io;
-use std::cmp;
 
 
 /// https://beta.atcoder.jp/contests/abc075/tasks/abc075_b
@@ -9,14 +8,29 @@ fn main() {
         (i[0], i[1])
     };
 
-    let mut s = Vec::new();
-    for _ in 0..h {
-        let i = read_one::<String>().chars().collect::<Vec<char>>();
-        s.push(i);
+    let mut s = vec![vec![0; w + 2]; h + 2];
+    let mut buf = Vec::new();
+    for i in 0..h {
+        let m = read_one::<String>().chars().collect::<Vec<char>>();
+        buf.push(m.clone());
+        for j in 0..w {
+            s[i + 1][j + 1] = if m[j] == '#' { 1 } else { 0 };
+        }
     }
-
+    let mut ans = vec![vec!["#".to_string(); w]; h];
     for i in 0..h { for j in 0..w {
+        if buf[i][j] == '.' {
+            let mut cnt = 0;
+            for x in 0..3 { for y in 0..3 {
+                cnt += s[y + i][x + j];
+            }}
+            ans[i][j] = cnt.to_string();
+        }
     }}
+
+    for row in ans {
+        println!("{}", row.join(""));
+    }
 }
 
 
