@@ -1,6 +1,15 @@
 use std::cmp;
 
 
+#[allow(dead_code)]
+fn ncr(n: usize, r: usize) -> usize {
+    match (n, r) {
+        (0, _) | (_, 0) => 1,
+        _ => ncr(n, r - 1) * (n - r + 1) / r,
+    }
+}
+
+
 #[allow(unused)]
 macro_rules! debug {
     ($($v:expr),*) => { {
