@@ -1,6 +1,4 @@
 use std::io;
-use std::cmp::Ordering;
-use std::collections::BinaryHeap;
 
 
 fn main() {
@@ -9,82 +7,46 @@ fn main() {
         (i[0], i[1])
     };
 
-}
-
-
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
-struct State {
-    cost: usize,
-    pos: usize,
-}
-
-impl Ord for State {
-    fn cmp(&self, other: &State) -> Ordering {
-        match other.cost.cmp(&self.cost) {
-            Ordering::Less => Ordering::Less,
-            Ordering::Greater => Ordering::Greater,
-            Ordering::Equal => {
-                self.pos.cmp(&other.pos)
-            }
-        }
-    }
-}
-
-impl PartialOrd for State {
-    fn partial_cmp(&self, other: &State) -> Option<Ordering> {
-        Some(self.cmp(other))
-    }
-}
-
-
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
-struct Edge {
-    node: usize,
-    cost: usize,
-}
-
-fn dijkstra(adj: &Vec<Vec<Edge>>, s: usize) -> Vec<usize> {
-    let mut dist = (0..adj.len()).map(|_| ::std::usize::MAX)
-        .collect::<Vec<usize>>();
-
-    let mut q = BinaryHeap::new();
-    dist[s] = 0;
-    q.push( State { cost: 0, pos: s });
-
-    while let Some( State { cost, pos }) = q.pop() {
-
-        if cost > dist[pos] { continue; }
-
-        for e in &adj[pos] {
-            let s = State { cost: cost + e.cost, pos: e.node };
-            if s.cost < dist[s.pos] {
-                q.push(s);
-                dist[s.pos] = s.cost;
-            }
-        }
+    let mut am = (0..n).collect::<Vec<usize>>();
+    let mut path = vec![vec![false; n]; n];
+    for _ in 0..m {
+        let i = read::<usize>();
+        let (a, b) = (i[0] - 1, i[1] - 1);
+        path[a][b] = true;
+        path[b][a] = true;
     }
 
-    dist
-}
-
-fn dfs(g: &Vec<Vec<bool>>, n: usize, s: usize) -> usize {
-    let mut visited = (0..n).map(|_| false)
-        .collect::<Vec<bool>>();
-    let mut q = BinaryHeap::new();
-    let mut cnt = 0;
-    visited[s] = true;
-    q.push(s);
-
-    while let Some(pos) = q.pop() {
-        if visited.iter().filter(|&v| *v == true).count() == n {
-            cnt += 1;
+    let mut ans = 0;
+    loop {
+        if am[0] == 0 { // needs scope to borrow as mutable
+            let mut one = am.windows(2)
+                .map(|e| path[e[0]][e[1]]);
+            if one.all(|flg| flg) { ans += 1; }
         }
-
-        for e in &g[pos] {
-        }
+        if !next_permutation(&mut am) { break; }
     }
-    cnt
+    println!("{}", ans);
 }
+
+
+#[allow(dead_code)]
+/// https://github.com/bluss/permutohedron/blob/master/src/lexical.rs
+fn next_permutation<T>(list: &mut [T]) -> bool
+where T:
+    ::std::cmp::PartialOrd
+{
+    let mut i = list.len() - 1;
+    while i > 0 && list[i - 1] >= list[i] { i -= 1; }
+    if i <= 0 { return false; }
+
+    let mut j = list.len() - 1;
+    while list[j] <= list[i - 1] { j -= 1; }
+
+    list.swap(i - 1, j);
+    list[i..].reverse();
+    true
+}
+
 
 
 #[allow(dead_code)]

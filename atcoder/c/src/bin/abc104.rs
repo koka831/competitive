@@ -1,20 +1,16 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/abc076/tasks/abc076_c
+/// https://beta.atcoder.jp/contests/abc104/tasks/abc104_c
 fn main() {
-    let s = read_one::<String>()
-        .chars().collect::<Vec<char>>();
-    let t = read_one::<String>()
-        .chars().collect::<Vec<char>>();
-
-    if t.len() > s.len() { println!("UNRESTORABLE"); return; }
-
-    for i in 0..(s.len() - t.len()) {
-        let mut buf = s.clone();
-        for j in 0..t.len() {
-            if buf[i + j] == '?' { buf[i + j] = t[j]; }
-        }
+    let (d, g) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+    let mut pc = Vec::new();
+    for _ in 0..d {
+        let i = read::<usize>();
+        pc.push((i[0], i[1]));
     }
 }
 

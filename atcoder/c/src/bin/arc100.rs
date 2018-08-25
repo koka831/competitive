@@ -1,21 +1,22 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/abc076/tasks/abc076_c
+/// https://beta.atcoder.jp/contests/arc100/tasks/arc100_a
 fn main() {
-    let s = read_one::<String>()
-        .chars().collect::<Vec<char>>();
-    let t = read_one::<String>()
-        .chars().collect::<Vec<char>>();
+    let n = read_one::<usize>();
+    let an = read::<isize>();
 
-    if t.len() > s.len() { println!("UNRESTORABLE"); return; }
-
-    for i in 0..(s.len() - t.len()) {
-        let mut buf = s.clone();
-        for j in 0..t.len() {
-            if buf[i + j] == '?' { buf[i + j] = t[j]; }
-        }
+    let mut bn = Vec::new();
+    for i in 0..n {
+        bn.push(an[i] - i as isize + 1);
     }
+    bn.sort();
+    let mut ans = 0;
+    let med = bn[bn.len() / 2];
+    for b in bn {
+        ans += (b - med).abs();
+    }
+    println!("{}", ans);
 }
 
 
