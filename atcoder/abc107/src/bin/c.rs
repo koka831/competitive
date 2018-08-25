@@ -11,15 +11,15 @@ fn main() {
     xn.sort();
     let mut start = ::std::usize::MAX;
     for i in 0..n {
-        if (xn[i].abs() as usize) < start { start = i; }
+        start = cmp::min(start, xn[i].abs() as usize);
+    }
+    let mut ans = ::std::usize::MAX;
+    for i in 0..n - k + 1 {
+        ans = cmp::min(ans, xn[i].abs() as usize + (xn[i] - xn[i + k - 1]).abs() as usize);
+        ans = cmp::min(ans, xn[i + k - 1].abs() as usize + (xn[i] - xn[i + k - 1]).abs() as usize);
     }
 
-    let mut cnt = 0;
-    let mut cost = xn[start].abs() as usize;
-    let mut prev = start;
-    while cnt < k {
-        
-    }
+    println!("{}", ans);
 }
 
 
