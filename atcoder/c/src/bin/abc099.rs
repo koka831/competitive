@@ -1,27 +1,9 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/abc084/tasks/abc084_c
-/// Special Trains
+/// https://beta.atcoder.jp/contests/abc099/tasks/abc099_c
+/// Strange Bank
 fn main() {
-    let n = read_one::<usize>();
-    let mut csf = Vec::new();
-    for _ in 1..n {
-        let i = read::<usize>();
-        csf.push((i[0], i[1], i[2]));
-    }
-
-    for i in 0..n {
-        let mut t = 0;
-        for j in i..n - 1 {
-            if t < csf[j].1 { t = csf[j].1; }
-            else if t % csf[j].2 != 0 {
-                t += csf[j].2 - t % csf[j].2;
-            }
-            t += csf[j].0;
-        }
-        println!("{}", t);
-    }
 }
 
 

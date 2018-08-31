@@ -1,8 +1,9 @@
 use std::io;
-use std::cmp;
 
 
 /// https://beta.atcoder.jp/contests/abc080/tasks/abc080_c
+/// Shopping Street
+/// 2^10 通りを全探索
 fn main() {
     let n = read_one::<usize>();
     let mut fs = Vec::new();
@@ -11,17 +12,20 @@ fn main() {
     for _ in 0..n { fs.push(read::<isize>()); }
     for _ in 0..n { ps.push(read::<isize>()); }
 
-    let ans: isize = fs.iter().zip(ps.iter())
-        .map(|(f, p)| {
-            let least_i = p.iter().max().unwrap();
-            let sum: isize = f.iter().zip(p.iter())
-                .map(|(f_i, p_i)| {
-                    if *f_i == 1 { *p_i } else { 0 }
-                })
-                .sum();
-            cmp::max(*least_i, sum)
-        })
-        .sum();
+    let mut ans = ::std::isize::MAX * -1;
+    for i in 1..1 << 10 {
+        let mut tmp = 0;
+        for k in 0..n {
+            let mut cnt = 0;
+            for j in 0..10 {
+                if (i & 1 << j) != 0 {
+                    if fs[k][j] == 1 { cnt += 1; }
+                }
+            }
+            tmp += ps[k][cnt];
+        }
+        if ans < tmp { ans = tmp; }
+    }
 
     println!("{}", ans);
 }

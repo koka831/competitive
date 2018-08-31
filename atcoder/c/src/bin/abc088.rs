@@ -1,27 +1,24 @@
 use std::io;
 
-/// https://beta.atcoder.jp/contests/abc006/tasks/abc006_3
-/// 2a + 3b + 4c = m
-/// a + b + c = n
-/// 2b = a + b
-/// b = 0, 1
-fn main() {
-    let (n, m) = {
-        let i = read::<usize>();
-        (i[0], i[1])
-    };
 
-    for i in 0..n + 1 {
-        // c == 0
-        if 2 * i + 4 * (n - i) == m {
-            println!("{} 0 {}", i, n - i);
-            return;
-        } else if i < n && 2 * i + 3 + 4 * (n - i - 1) == m {
-            println!("{} 1 {}", i, n - i - 1);
-            return;
-        }
-    }
-    println!("-1 -1 -1");
+/// https://beta.atcoder.jp/contests/abc088/tasks/abc088_c
+/// Takahashi's Information
+/// an = pn + x
+/// bn = qn - x
+fn main() {
+    let c1 = read::<usize>();
+    let c2 = read::<usize>();
+    let c3 = read::<usize>();
+    let c = vec![c1, c2, c3];
+    let mut flg = true;
+    for i in 0..3 { for j in 0..3 {
+    for k in 0..3 { for l in 0..3 {
+        if c[i][k] + c[j][l] != c[i][l] + c[j][k] { flg = false; }
+    }}
+    }}
+
+    if flg { println!("Yes"); }
+    else { println!("No"); }
 }
 
 
