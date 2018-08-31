@@ -1,5 +1,18 @@
 use std::cmp;
 
+#[allow(unused)]
+fn gcd(a: u64, b: u64) -> u64 {
+    if b == 0 {
+        a
+    } else {
+        gcd(b, a % b)
+    }
+}
+
+#[allow(unused)]
+fn lcm(a: u64, b: u64) -> u64 {
+    (a / gcd(a, b)) * b
+}
 
 #[allow(dead_code)]
 fn ncr(n: usize, r: usize) -> usize {
