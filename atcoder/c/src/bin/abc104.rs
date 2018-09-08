@@ -12,6 +12,12 @@ fn main() {
         let i = read::<usize>();
         pc.push((i[0], i[1]));
     }
+
+    for i in 0..(1 << d) {
+        for j in 0..d {
+            if (i & 1 << j) != 0 { }
+        }
+    }
 }
 
 

@@ -6,10 +6,27 @@ use std::io;
 fn main() {
     let (n, a) = {
         let i = read::<usize>();
-        (i[0], i[1])
+        (i[0], i[1] - 1)
     };
 
     let x = read::<usize>();
+    let x_max = x.iter().max().unwrap();
+    let mut dp = vec![vec![vec![0; n * x_max + 1]; n]; n];
+
+    for i in 0..n { for j in 0..n { for k in 0..n * x_max + 1 {
+        dp[i][j][k] = if i * j * k == 0 { 0 }
+        else if i > 0 && k < x[i] {
+            dp[i - 1][j][k]
+        } else if j > 0 && j > 0 && k >= x[i] {
+            dp[i - 1][j][k] + dp[i - 1][j - 1][k - x[i]]
+        } else { 0 };
+    }}}
+
+    let mut ans = 0;
+    for i in 0..n {
+        ans += dp[n - 1][i][i * a];
+    }
+    println!("{}", ans);
 }
 
 

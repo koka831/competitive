@@ -1,22 +1,13 @@
 use std::io;
-use std::cmp;
 
 
-/// https://beta.atcoder.jp/contests/abc099/tasks/abc099_c
-/// Strange Bank
-/// 6^p * 6 == 6^(p + 1)
+/// https://beta.atcoder.jp/contests/arc082/tasks/arc082_b
+/// Rust list swap
 fn main() {
     let n = read_one::<usize>();
-    let mut ans = ::std::usize::MAX;
-    for i in 0..n + 1 {
-        let mut cnt = 0;
-        let mut t = i;
-        while t > 0 { cnt += t % 6; t /= 6; }
-        t = n - i;
-        while t > 0 { cnt += t % 9; t /= 9; }
-        ans = cmp::min(ans, cnt);
-    }
-    println!("{}", ans);
+    let pn = read::<usize>();
+
+
 }
 
 
@@ -43,3 +34,5 @@ where T:
     io::stdin().read_line(&mut buf).unwrap();
     buf.trim().parse().unwrap()
 }
+
+
