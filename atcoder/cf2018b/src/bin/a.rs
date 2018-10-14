@@ -2,6 +2,8 @@ use std::io;
 
 
 fn main() {
+    let n = read_one::<usize>();
+    println!("{}", 100 - 100 / n);
 }
 
 

@@ -2,6 +2,46 @@ use std::io;
 
 
 fn main() {
+    let n = read_one::<usize>();
+
+    let mut vec = vec![vec!['.'; n]; n];
+    let ar = [0, 3, 1, 4, 2];
+    let ra = [2, 4, 1, 3, 0];
+
+    for i in 0..n { for j in 0..n {
+        if j % 5 == ar[i % 5] { vec[i][j] = 'X'; }
+
+        if i == 0 {
+            if j % 5 == ra[(j + 3) % 5] {
+                vec[i][j] = 'X';
+            }
+        }
+
+        if j == 0 {
+            if i % 5 == ar[(i + 3) % 5] {
+                vec[i][j] = 'X';
+            }
+        }
+
+        if i == n - 1 {
+            if j % 5 == ar[(i + 1) % 5] { vec[i][j] = 'X'; }
+        }
+
+        if j == n - 1 {
+            if i % 5 == ra[j % 5] { vec[i][j] = 'X'; }
+        }
+    }}
+
+    // let mut cnt = 0;
+    for i in 0..n { for j in 0..n {
+            // if vec[i][j] == 'X' { cnt += 1; }
+            print!("{}", vec[i][j]);
+        }
+        println!();
+    }
+
+    // n == 1000 -> 200,800
+    // println!("{}", cnt);
 }
 
 
