@@ -2,6 +2,7 @@ use std::io;
 
 
 /// https://beta.atcoder.jp/contests/abc104/tasks/abc104_c
+/// All Green
 fn main() {
     let (d, g) = {
         let i = read::<usize>();

@@ -1,25 +1,9 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/arc064/tasks/arc064_a
-/// Boxes and Candies
+/// https://beta.atcoder.jp/contests/abc064/tasks/abc064_d
 fn main() {
-    let (n, x) = {
-        let i = read::<u64>();
-        (i[0], i[1] as i64)
-    };
-    let mut an = read::<i64>();
-    println!("{}", an.len());
-    println!("{}", n);
-    let mut ans = 0;
-    for i in 0..n - 1 {
-        let total = an[i] + an[i + 1];
-        if total > x {
-            an[i + 1] = x - an[i];
-            ans += total - x;
-        }
-    }
-    println!("{}", ans);
+
 }
 
 

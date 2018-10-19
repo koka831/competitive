@@ -9,27 +9,26 @@ fn main() {
     let ra = [2, 4, 1, 3, 0];
 
     for i in 0..n { for j in 0..n {
-        if j % 5 == ar[i % 5] { vec[i][j] = 'X'; }
+        let mut flg = false;
+        if j % 5 == ar[i % 5] { flg = true; }
 
         if i == 0 {
-            if j % 5 == ra[(j + 3) % 5] {
-                vec[i][j] = 'X';
-            }
+            if j % 5 == ra[(j + 3) % 5] { flg = true; }
         }
 
         if j == 0 {
-            if i % 5 == ar[(i + 3) % 5] {
-                vec[i][j] = 'X';
-            }
+            if i % 5 == ar[(i + 3) % 5] { flg = true; }
         }
 
         if i == n - 1 {
-            if j % 5 == ar[(i + 1) % 5] { vec[i][j] = 'X'; }
+            if j % 5 == ar[(i + 1) % 5] { flg = true; }
         }
 
         if j == n - 1 {
-            if i % 5 == ra[j % 5] { vec[i][j] = 'X'; }
+            if i % 5 == ra[j % 5] { flg = true; }
         }
+
+        if flg { vec[i][j] = 'X'; }
     }}
 
     // let mut cnt = 0;
