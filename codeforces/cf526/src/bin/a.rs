@@ -2,6 +2,14 @@ use std::io;
 
 
 fn main() {
+    let n = read_one::<usize>();
+    let an = read::<usize>();
+    let mut ans = 0;
+
+    for i in 0..n {
+        ans += an[i] * i * 4;
+    }
+    println!("{}", ans);
 }
 
 
