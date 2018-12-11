@@ -2,13 +2,23 @@ use std::io;
 
 
 fn main() {
-    let (x, y) = {
-        let i = read::<usize>();
-        (i[0], i[1])
-    };
-    println!("{}", x + y / 2);
+    let n = read_one::<usize>();
+    let ans = recur(3, n) + recur(5, n) + recur(7, n);
+    println!("{}", ans);
 }
 
+fn recur(n: usize, th: usize) -> usize {
+    if n > th { return 0; }
+    let s = n.to_string();
+    let mut ans = 1;
+    if !(s.contains("3") && s.contains("5") && s.contains("7")) {
+        ans = 0;
+    } 
+    return ans
+        + recur(n * 10 + 3, th)
+        + recur(n * 10 + 5, th)
+        + recur(n * 10 + 7, th);
+}
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>
