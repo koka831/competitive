@@ -1,9 +1,10 @@
 use std::io;
-use std::cmp;
 
 
+/// s < diff => min
+/// s > diff => min - ceil(diff / n)
 fn main() {
-    let (n, s) = {
+    let (n, _) = {
         let i = read::<usize>();
         (i[0], i[1])
     };
@@ -11,14 +12,16 @@ fn main() {
     let mut vn = read::<usize>();
     vn.sort();
     vn.reverse();
-    println!("{:?}", vn);
     let mut amount = vec![0; n + 1];
     amount[0] = 0;
     for i in 1..n {
         amount[i] = amount[i - 1] + (vn[i - 1] - vn[i]) * i;
     }
     amount[n] = amount[n - 1] + vn[n - 1] * n;
-    println!("{:?}", amount);
+
+    for _ in 0..n {
+        // if amount[]
+    }
 }
 
 #[allow(dead_code)]
