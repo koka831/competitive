@@ -2,25 +2,23 @@ use std::io;
 
 
 fn main() {
-    let (n, m, a, b) = {
+    let (t, a, b, c, d) = {
         let i = read::<usize>();
-        (i[0], i[1], i[2], i[3])
+        (i[0], i[1], i[2], i[3], i[4])
     };
 
-    let mut ans = vec![b; n];
-    for _ in 0..m {
-        let (l, r) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-
-        for i in (l - 1)..r {
-            ans[i] = a;
-        }
+    let mut ans = 0;
+    if t >= a + c {
+        ans = b + d;
+    } else if t >= c {
+        ans = d;
+    } else if t >= a {
+        ans = b;
     }
 
-    println!("{}", ans.iter().sum::<usize>());
+    println!("{}", ans);
 }
+
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>

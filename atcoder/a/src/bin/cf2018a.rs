@@ -2,25 +2,18 @@ use std::io;
 
 
 fn main() {
-    let (n, m, a, b) = {
-        let i = read::<usize>();
-        (i[0], i[1], i[2], i[3])
-    };
-
-    let mut ans = vec![b; n];
-    for _ in 0..m {
-        let (l, r) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-
-        for i in (l - 1)..r {
-            ans[i] = a;
-        }
+    let a = read_one::<usize>();
+    let b = read_one::<usize>();
+    let c = read_one::<usize>();
+    let s = read_one::<usize>();
+    let x = a + b + c;
+    if x <= s && s <= x + 3 {
+        println!("Yes");
+    } else {
+        println!("No");
     }
-
-    println!("{}", ans.iter().sum::<usize>());
 }
+
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>

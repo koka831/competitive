@@ -2,25 +2,15 @@ use std::io;
 
 
 fn main() {
-    let (n, m, a, b) = {
-        let i = read::<usize>();
-        (i[0], i[1], i[2], i[3])
-    };
-
-    let mut ans = vec![b; n];
-    for _ in 0..m {
-        let (l, r) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-
-        for i in (l - 1)..r {
-            ans[i] = a;
-        }
+    let n = read_one::<usize>();
+    let mut ans = 1;
+    for _ in 0..n {
+        ans *= 4;
     }
 
-    println!("{}", ans.iter().sum::<usize>());
+    println!("{}", ans);
 }
+
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>
