@@ -8,11 +8,6 @@ fn main() {
         let i = read::<u32>();
         (i[0], i[1], i[2], i[3], i[4], i[5])
     };
-
-    let mut ans = 0;
-    for i in 0..31 { for j in 0..31 {
-
-    }}
 }
 
 
