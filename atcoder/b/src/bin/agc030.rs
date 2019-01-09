@@ -2,20 +2,21 @@ use std::io;
 use std::cmp;
 
 
-/// https://beta.atcoder.jp/contests/arc083/tasks/arc083_a
 fn main() {
-    let (a, b, c, d, e, f) = {
-        let i = read::<u32>();
-        (i[0], i[1], i[2], i[3], i[4], i[5])
+    let (a, b, c) = {
+        let i = read::<usize>();
+        (i[0], i[1], i[2])
     };
+
+    println!("{}", b + cmp::min(c, a + b + 1));
 }
 
 
 #[allow(dead_code)]
 fn read<T>() -> Vec<T>
 where T:
-    std::str::FromStr,
-    T::Err: std::fmt::Debug {
+std::str::FromStr,
+T::Err: std::fmt::Debug {
 
     let mut buf = String::new();
     io::stdin().read_line(&mut buf).unwrap();
@@ -27,8 +28,8 @@ where T:
 #[allow(dead_code)]
 fn read_one<T>() -> T
 where T:
-    std::str::FromStr,
-    T::Err: std::fmt::Debug {
+std::str::FromStr,
+T::Err: std::fmt::Debug {
 
     let mut buf = String::new();
     io::stdin().read_line(&mut buf).unwrap();

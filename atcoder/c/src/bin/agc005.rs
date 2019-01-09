@@ -9,7 +9,7 @@ fn main() {
         match c {
             'S' => buf.push(c),
             'T' => {
-                if let Some('S') = buf.last() {
+                if let Some(&'S') = buf.last() {
                     buf.pop();
                 } else {
                     buf.push(c);

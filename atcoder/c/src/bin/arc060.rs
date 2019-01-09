@@ -14,8 +14,9 @@ fn main() {
     let mut dp = vec![vec![vec![0; n * x_max + 1]; n]; n];
 
     for i in 0..n { for j in 0..n { for k in 0..n * x_max + 1 {
-        dp[i][j][k] = if i * j * k == 0 { 0 }
-        else if i > 0 && k < x[i] {
+        dp[i][j][k] = if i == 0 && j == 0 && k == 0 {
+            1
+        } else if i > 0 && k < x[i] {
             dp[i - 1][j][k]
         } else if j > 0 && j > 0 && k >= x[i] {
             dp[i - 1][j][k] + dp[i - 1][j - 1][k - x[i]]
