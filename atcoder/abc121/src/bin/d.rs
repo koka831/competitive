@@ -2,29 +2,35 @@ use std::io;
 use std::cmp;
 
 
-/// N <= 10^5, K <= 100
-/// dp[i] = 足場iまでのコストの総和の最小値
-/// O(NK) <= 10^7
 fn main() {
-    let (n, k) = {
+    let (a, b) = {
         let i = read::<usize>();
         (i[0], i[1])
     };
-    let hn = read::<isize>();
 
-    let mut dp = vec![::std::isize::MAX; n];
-    dp[0] = 0;
+    let sum_a = xorsum(a);
+    let sum_b = xorsum(b);
+}
 
-    for i in 1..n {
-        for j in 1..cmp::min(k, i) + 1 {
-            dp[i] = cmp::min(
-                dp[i],
-                dp[i - j] + (hn[i] - hn[i - j]).abs(),
-            );
+fn xorsum(x: usize) -> usize {
+    let mut v = Vec::new();
+    let mut a: usize = 1;
+    loop {
+        if a > x { break; }
+        if a == 1 {
+            if x % 4 == 1 || x % 4 == 2 { v.push(1); } else { v.push(0); }
         }
+        else {
+            let pos: usize = (x + 1) % (a * 2);
+            println!("{}", pos);
+            let b = if pos >= a && pos % 2 != 0 { 1 } else { 0 };
+            v.push(b);
+        }
+        a *= 2;
     }
-
-    println!("{}", dp[n - 1]);
+    v.reverse();
+    println!("{:?}", v);
+    0
 }
 
 

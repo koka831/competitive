@@ -1,25 +1,23 @@
 use std::io;
-use std::cmp;
 
 
-/// 2 <= N <= 10^5
-/// dp[i]: 足場iまでに支払うコストの総和の最小値
+/// 22:23 ~ 22:53
 fn main() {
-    let n = read_one::<usize>();
-    let hn = read::<isize>();
-
-    let mut dp = vec![::std::isize::MAX; n];
-    dp[0] = 0;
-    dp[1] = (hn[1] - hn[0]).abs();
-
-    for i in 2..n {
-        dp[i] = cmp::min(
-            (hn[i - 1] - hn[i]).abs() + dp[i - 1],
-            (hn[i - 2] - hn[i]).abs() + dp[i - 2],
-        );
+    let mut n = read_one::<isize>();
+    let mut buf = Vec::new();
+    if n == 0 { println!("0"); return; }
+    while n != 0 {
+        if n % 2 != 0 {
+            buf.push("1");
+            n -= 1;
+        } else { buf.push("0"); }
+        n /= -2;
     }
 
-    println!("{}", dp[n - 1]);
+    for c in buf.iter().rev() {
+        print!("{}", c);
+    }
+    println!();
 }
 
 

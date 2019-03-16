@@ -1,30 +1,41 @@
 use std::io;
 use std::cmp;
+use std::collections::HashMap;
 
 
-/// N <= 10^5, K <= 100
-/// dp[i] = 足場iまでのコストの総和の最小値
-/// O(NK) <= 10^7
 fn main() {
     let (n, k) = {
         let i = read::<usize>();
         (i[0], i[1])
     };
-    let hn = read::<isize>();
 
-    let mut dp = vec![::std::isize::MAX; n];
-    dp[0] = 0;
+    let mut hm = HashMap::new();
 
-    for i in 1..n {
-        for j in 1..cmp::min(k, i) + 1 {
-            dp[i] = cmp::min(
-                dp[i],
-                dp[i - j] + (hn[i] - hn[i - j]).abs(),
-            );
+    for _ in 0..n {
+        let (t, d) = {
+            let i = read::<usize>();
+            (i[0], i[1])
+        };
+
+        if !hm.contains_key(&t) {
+            hm.insert(t, vec![d]);
+        } else {
+            hm.get_mut(&t).unwrap().push(t);
         }
     }
 
-    println!("{}", dp[n - 1]);
+    let mut cumsum = HashMap::new();
+    for v in hm.values_mut() {
+        v.sort();
+        v.reverse();
+        for j in 0..v.len() {
+            cumsum
+        }
+    }
+
+    let mut ans = 0;
+    for i in 1..k + 1 {
+    }
 }
 
 

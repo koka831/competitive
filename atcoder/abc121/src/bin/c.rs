@@ -1,30 +1,34 @@
 use std::io;
-use std::cmp;
 
 
-/// N <= 10^5, K <= 100
-/// dp[i] = 足場iまでのコストの総和の最小値
-/// O(NK) <= 10^7
 fn main() {
-    let (n, k) = {
+    let (n, m) = {
         let i = read::<usize>();
         (i[0], i[1])
     };
-    let hn = read::<isize>();
 
-    let mut dp = vec![::std::isize::MAX; n];
-    dp[0] = 0;
-
-    for i in 1..n {
-        for j in 1..cmp::min(k, i) + 1 {
-            dp[i] = cmp::min(
-                dp[i],
-                dp[i - j] + (hn[i] - hn[i - j]).abs(),
-            );
-        }
+    let mut ab = Vec::new();
+    for _ in 0..n {
+        let (a, b) = {
+            let i = read::<usize>();
+            (i[0], i[1])
+        };
+        ab.push((a, b));
     }
 
-    println!("{}", dp[n - 1]);
+    ab.sort_by_key(|x| x.0);
+    ab.reverse();
+    let mut count: usize = 0;
+    let mut price: usize = 0;
+    loop {
+        let x = ab.pop().unwrap();
+        if count + x.1 >= m {
+            println!("{}", price + (m - count) * x.0);
+            return;
+        }
+        count += x.1;
+        price += x.1 * x.0;
+    }
 }
 
 
