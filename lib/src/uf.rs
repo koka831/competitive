@@ -6,22 +6,18 @@ struct UnionFind {
 impl UnionFind {
 
     fn new(n: usize) -> Self {
-        let mut vec = vec![0;n];
-        for i in 0..n { vec[i] = i; }
         UnionFind {
-            par: vec,
+            par: (0..n).collect(),
             rank: vec![0;n],
         }
     }
 
     fn find(&mut self, x: usize) -> usize {
-        if x == self.par[x] {
-            x
-        } else {
+        if x == self.par[x] { x }
+        else {
             let par = self.par[x];
-            let res = self.find(par);
-            self.par[x] = res;
-            res
+            self.par[x] = self.find(par);
+            self.par[x]
         }
     }
 
@@ -30,14 +26,21 @@ impl UnionFind {
     }
 
     fn unite(&mut self, x: usize, y: usize) {
-        let par_x = self.find(x);
-        let par_y = self.find(y);
-        if self.rank[par_x] > self.rank[par_y] {
-            self.par[par_x] = par_x;
-        } else {
-            self.par[par_x] = par_y;
-            if self.rank[par_x] == self.rank[par_y] {
-                self.rank[par_y] += 1;
+        use std::cmp::Ordering;
+        let x = self.find(x);
+        let y = self.find(y);
+        if x == y { return; }
+
+        match self.rank[x].cmp(&self.rank[y]) {
+            Ordering::Equal => {
+                self.par[y] = x;
+                self.rank[x] += 1;
+            },
+            Ordering::Less => {
+                self.par[x] = y;
+            },
+            Ordering::Greater => {
+                self.par[y] = x;
             }
         }
     }
