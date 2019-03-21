@@ -1,19 +1,22 @@
 use std::io;
+use std::cmp;
 
 
-/// https://beta.atcoder.jp/contests/arc064/tasks/arc064_a
-/// Boxes and Candies
 fn main() {
     let (n, x) = {
-        let i = read::<u64>();
-        (i[0], i[1] as i64)
+        let i = read::<usize>();
+        (i[0], i[1])
     };
-    let mut an = read::<i64>();
-    println!("{}", an.len());
-    println!("{}", n);
-    let mut ans = 0;
+    let mut an = read::<usize>();
+    let mut ans: usize = 0;
+
+    for a in an.iter_mut() {
+        if *a > x { ans += *a - x; }
+        *a = cmp::min(*a, x);
+    }
+
     for i in 0..n - 1 {
-        let total = an[i] + an[i + 1];
+        let total: usize = an[i] + an[i + 1];
         if total > x {
             an[i + 1] = x - an[i];
             ans += total - x;

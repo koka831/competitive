@@ -4,15 +4,29 @@ use std::cmp;
 
 fn main() {
     let n = read_one::<usize>();
-    let mut t = 1.0;
-    let mut a = 1.0;
+    let mut tn = Vec::new();
+    let mut an = Vec::new();
     for _ in 0..n {
-        let (t_i, a_i) = {
-            let i = read::<f32>();
+        let (t, a) = {
+            let i = read::<usize>();
             (i[0], i[1])
         };
-        let _n = cmp::max((t / t_i).ceil(), (a / a_i).ceil());
+        tn.push(t);
+        an.push(a);
     }
+
+    let mut t = 1usize;
+    let mut a = 1usize;
+
+    for i in 0..n {
+        let x: usize = cmp::max(
+            (t + tn[i] - 1) / tn[i],
+            (a + an[i] - 1) / an[i]
+        );
+        t = tn[i] * x;
+        a = an[i] * x;
+    }
+    println!("{}", t + a);
 }
 
 
