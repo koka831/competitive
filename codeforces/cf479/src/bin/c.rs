@@ -2,12 +2,24 @@ use std::io;
 
 
 fn main() {
-    let (n, k) = {
-        let i = read::<isize>();
+    let (_, k) = {
+        let i = read::<usize>();
         (i[0], i[1])
     };
-    let mut an = read::<isize>();
+    let mut an = read::<usize>();
     an.sort();
+
+    let ans = if k == 0 { an[0] - 1 } else { an[k - 1] };
+
+    let mut cnt = 0;
+    for a in an {
+        if a <= ans { cnt += 1; }
+    }
+
+    if cnt != k || !(1 <= ans && ans <= 10e9 as usize) {
+        println!("-1"); return;
+    }
+    println!("{}", ans);
 }
 
 
