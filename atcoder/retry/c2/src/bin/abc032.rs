@@ -13,8 +13,9 @@ fn main() {
     if sn.contains(&0) { println!("{}", n); return; }
 
     let mut r = 0;
-    let mut prod = 1;
+    let mut prod: usize = 1;
     let mut ans = 0;
+
     for l in 0..n {
         while r < n && prod * sn[r] <= k {
             prod *= sn[r];
