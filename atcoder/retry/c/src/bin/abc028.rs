@@ -1,11 +1,10 @@
 use std::io;
+use std::cmp;
 
-
-// const MOD: usize = 1e9 as usize + 7;
 
 fn main() {
-    // let n = read_one::<usize>();
-    // let mut dp = vec![vec![0; n]; n];
+    let n = read::<usize>();
+    println!("{}", cmp::max(n[0] + n[3] + n[4], n[1] + n[2] + n[4]));
 }
 
 

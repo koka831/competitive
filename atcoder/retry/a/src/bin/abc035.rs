@@ -1,11 +1,13 @@
 use std::io;
 
 
-// const MOD: usize = 1e9 as usize + 7;
-
 fn main() {
-    // let n = read_one::<usize>();
-    // let mut dp = vec![vec![0; n]; n];
+    let (w, h) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
+    if 3 * w == 4 * h { println!("4:3"); }
+    else { println!("16:9"); }
 }
 
 
