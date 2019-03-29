@@ -1,32 +1,30 @@
 use std::io;
-use std::cmp;
+use std::collections::HashMap;
 
 
 fn main() {
-    let n = read_one::<usize>();
-    let mut tn = Vec::new();
-    let mut an = Vec::new();
-    for _ in 0..n {
-        let (t, a) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-        tn.push(t);
-        an.push(a);
+    let s = read_one::<String>()
+        .chars()
+        .collect::<Vec<char>>();
+
+    let mut hm = HashMap::new();
+    for c in s {
+        *hm.entry(c).or_insert(0) += 1;
     }
 
-    let mut t = 1usize;
-    let mut a = 1usize;
+    let mut cnt: usize = 0;
+    let mut odd = 0;
 
-    for i in 0..n {
-        let x: usize = cmp::max(
-            (t + tn[i] - 1) / tn[i],
-            (a + an[i] - 1) / an[i]
-        );
-        t = tn[i] * x;
-        a = an[i] * x;
+    for (_, val) in hm { cnt += val / 2 * 2; odd += val % 2; }
+
+    if odd > 0 {
+        cnt += 1;
+        odd -= 1;
     }
-    println!("{}", t + a);
+
+    let score = cnt.pow(2) + odd;
+
+    println!("{}", score);
 }
 
 

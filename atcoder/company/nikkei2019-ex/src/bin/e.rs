@@ -1,32 +1,19 @@
 use std::io;
-use std::cmp;
 
 
 fn main() {
     let n = read_one::<usize>();
-    let mut tn = Vec::new();
-    let mut an = Vec::new();
-    for _ in 0..n {
-        let (t, a) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-        tn.push(t);
-        an.push(a);
+    let chr = vec!["a", "b", "c", "d", "e"];
+    for i in 1..n + 1 {
+        let mut buf = String::new();
+        for j in 0..5 {
+            if i % (j + 2) == 0 {
+                buf += chr[j];
+            }
+        }
+        if buf.len() == 0 { buf = i.to_string(); }
+        println!("{}", buf);
     }
-
-    let mut t = 1usize;
-    let mut a = 1usize;
-
-    for i in 0..n {
-        let x: usize = cmp::max(
-            (t + tn[i] - 1) / tn[i],
-            (a + an[i] - 1) / an[i]
-        );
-        t = tn[i] * x;
-        a = an[i] * x;
-    }
-    println!("{}", t + a);
 }
 
 
