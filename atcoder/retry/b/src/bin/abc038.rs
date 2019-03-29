@@ -2,23 +2,13 @@ use std::io;
 
 
 fn main() {
-    let n = read_one::<usize>();
-    let an = read::<usize>();
-
-    let mut cnt = 0;
-    let mut r = 0;
-
-    for l in 0..n {
-        while r < n && (r <= l|| an[r - 1] < an[r]) {
-            r += 1;
-        }
-
-        cnt += r - l;
-
-        if r == l { r += 1; }
+    let a = read::<usize>();
+    let b = read::<usize>();
+    if a.contains(&b[0]) || a.contains(&b[1]) {
+        println!("YES");
+    } else {
+        println!("NO");
     }
-
-    println!("{}", cnt);
 }
 
 

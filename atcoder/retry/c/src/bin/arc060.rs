@@ -1,33 +1,27 @@
 use std::io;
 
 
-/// https://beta.atcoder.jp/contests/arc060/tasks/arc060_a
-/// (枚数) * A == (選んだカードの和) となるようなknapsack
 fn main() {
     let (n, a) = {
         let i = read::<usize>();
         (i[0], i[1] - 1)
     };
 
-    let x = read::<usize>();
-    let x_max = x.iter().max().unwrap();
-    let mut dp = vec![vec![vec![0; n * x_max + 1]; n]; n];
+    let xn = read::<usize>();
+    let mut yn = Vec::new();
+    for x in xn { yn.push(x as isize - a as isize); }
+    let max = yn.iter().max().unwrap() as usize;
+    let mut dp = vec![vec![0; n * max * 2 + 1]; n];
 
-    for i in 0..n { for j in 0..n { for k in 0..n * x_max + 1 {
-        dp[i][j][k] = if i == 0 && j == 0 && k == 0 {
-            1
-        } else if i > 0 && k < x[i] {
-            dp[i - 1][j][k]
-        } else if j > 0 && j > 0 && k >= x[i] {
-            dp[i - 1][j][k] + dp[i - 1][j - 1][k - x[i]]
-        } else { 0 };
-    }}}
+    for i in 0..n { for j in 0..n * max * 2 + 1 {
+        let ty = j - yn[i];
+        dp[i][j] = if i == 0 && j == n * max { 1 }
+        else if i > 0 && (ty < 0 || ty > (2 * n * max) as isize) { dp[i - 1][j] }
+        else if i > 0 && 0 <= (j as isize ) { dp[i - 1][j] + dp[i - 1][ty as usize] }
+        else { 0 }
+    }}
 
-    let mut ans = 0;
-    for i in 0..n {
-        ans += dp[n - 1][i][i * a];
-    }
-    println!("{}", ans);
+    println!("{}", dp[n - 1][n * max - 1] - 1);
 }
 
 

@@ -1,24 +1,35 @@
 use std::io;
+use std::cmp;
 
 
 fn main() {
-    let n = read_one::<usize>();
-    let an = read::<usize>();
+    let (n, k) = {
+        let i = read::<usize>();
+        (i[0], i[1])
+    };
 
-    let mut cnt = 0;
+    let mut sn = Vec::new();
+    for _ in 0..n { sn.push(read_one::<usize>()); }
+
     let mut r = 0;
+    let mut ans = 0;
+    let mut mul: usize = 1;
+
+    if sn.contains(&0) { println!("{}", n); return; }
 
     for l in 0..n {
-        while r < n && (r <= l|| an[r - 1] < an[r]) {
+        while r < n && mul * sn[r] <= k {
+            mul *= sn[r];
             r += 1;
         }
 
-        cnt += r - l;
+        ans = cmp::max(ans, r - l);
 
-        if r == l { r += 1; }
+        if l == r { r += 1; }
+        else { mul /= sn[l]; }
     }
 
-    println!("{}", cnt);
+    println!("{}", ans);
 }
 
 
