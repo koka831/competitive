@@ -18,6 +18,20 @@ fn fizzbuzz(n: usize) -> String {
     }
 }
 
+fn binary_search(i: usize) -> usize {
+    let mut left = 0;
+    let mut right = i;
+
+    while right - left > 1 {
+        let mid = left + (right - left) / 2;
+        if (/* cond */true) { right = mid; }
+        else { left = mid; }
+    }
+    // left: 条件を満たさない最大
+    // right: 条件を満たす最小
+    right
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
