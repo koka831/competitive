@@ -2,7 +2,6 @@ use std::io;
 use std::collections::VecDeque;
 
 
-/// https://beta.atcoder.jp/contests/abc088/tasks/abc088_d
 fn main() {
     let (h, w) = {
         let i = read::<usize>();
