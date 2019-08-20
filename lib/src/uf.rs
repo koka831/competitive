@@ -1,8 +1,9 @@
-struct UnionFind {
+pub struct UnionFind {
     par: Vec<usize>,
     rank: Vec<usize>,
 }
 
+#[allow(dead_code)]
 impl UnionFind {
 
     fn new(n: usize) -> Self {
@@ -45,5 +46,3 @@ impl UnionFind {
         }
     }
 }
-
-

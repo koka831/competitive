@@ -1,6 +1,5 @@
 use std::cmp;
 
-
 pub trait BinarySearch<T> {
     fn lower_bound(&self, &T) -> usize;
     fn upper_bound(&self, &T) -> usize;

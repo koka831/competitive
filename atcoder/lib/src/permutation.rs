@@ -1,5 +1,4 @@
 // from github bluss/permutohedron
-
 pub trait LexicalPermutation {
     fn next_permutation(&mut self) -> bool;
     fn prev_permutation(&mut self) -> bool;
