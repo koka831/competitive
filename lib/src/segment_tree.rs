@@ -1,5 +1,6 @@
 #[allow(dead_code)]
-/// verified: http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3822184#2
+/// http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3822184#2
+/// http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3822528#1
 pub struct SegmentTree<T, F> {
     n: usize,
     v: Vec<T>,
@@ -13,9 +14,11 @@ where
     F: Fn(&T, &T) -> T,
 {
     pub fn new(n: usize, id: T, f: F) -> Self {
+        let mut cap = 1;
+        while cap <= n { cap *= 2; }
         SegmentTree {
-            n: n,
-            v: vec![id.clone(); 2 * n],
+            n: cap,
+            v: vec![id.clone(); 2 * cap],
             id: id,
             f: f,
         }
@@ -34,6 +37,11 @@ where
             id: id,
             f: f,
         }
+    }
+
+    #[inline]
+    pub fn get(&self, i: usize) -> T {
+        self.v[i + self.n].clone()
     }
 
     pub fn update(&mut self, mut i: usize, x: T) {
