@@ -13,29 +13,23 @@ fn solve() {
         .collect::<Vec<usize>>();
     let mut ans = vec![0; n];
     for p in 0..n {
-        let mut cnt = 1;
+        if ans[p] != 0 { continue; }
         let mut vec = Vec::new();
         let mut next = pn[p];
-        vec.push(next);
         loop {
+            vec.push(next);
             if next == p { break; }
             next = pn[next];
-            vec.push(next);
-            cnt += 1;
         }
 
-        for i in vec {
-            if ans[i] == 0 {
-                ans[i] = cnt;
-            }
+        for &i in vec.iter() {
+            ans[i] = vec.len();
         }
     }
-
-    let mut buf = String::new();
     for a in ans {
-        buf = format!("{} {}", buf, &a.to_string());
+        print!("{} ", a);
     }
-    println!("{}", buf);
+    println!();
 }
 
 #[allow(dead_code)]
