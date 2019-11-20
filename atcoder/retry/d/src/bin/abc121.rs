@@ -2,7 +2,20 @@ use std::io;
 
 
 fn main() {
-    
+    let (a, b) = {
+        let i = read::<isize>();
+        (i[0], i[1])
+    };
+    println!("{}", xor(b) ^ xor(a - 1));
+}
+
+fn xor(x: isize) -> isize {
+    if x % 2 != 0 { return odd_xor(x); }
+    odd_xor(x + 1) ^ (x + 1)
+}
+
+fn odd_xor(x: isize) -> isize {
+    (x + 1) / 2 % 2
 }
 
 
