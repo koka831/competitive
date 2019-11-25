@@ -1,4 +1,6 @@
 use std::io;
+use std::cmp;
+use std::collections::HashMap;
 
 
 fn main() {
@@ -14,17 +16,24 @@ fn main() {
     }
 
     let mut si = Vec::new();
-    for i in 0..n {
-        si.push(s[i] - i);
+    for i in 0..n + 1 {
+        si.push((s[i] - i) % k);
     }
 
-    let mut ans = 0;
-    for i in 0..n { for j in (i + 1)..n + 1 {
-        if (s[j] - s[i]) % k == j - i {
-            println!("{}, {}", j, i);
-            ans += 1;
+    let mut cnt = HashMap::new();
+    for i in 0..cmp::min(n + 1, k - 1) {
+        *cnt.entry(si[i]).or_insert(0) += 1;
+    }
+
+    let mut ans: usize = 0;
+    for i in 0..n + 1 {
+        *cnt.entry(si[i]).or_insert(0) -= 1;
+        if i + k <= n + 1 {
+            *cnt.entry(si[i + k - 1]).or_insert(0) += 1;
         }
-    }}
+        ans += cmp::max(*cnt.get(&si[i]).unwrap_or(&0), 0);
+    }
+
     println!("{}", ans);
 }
 
