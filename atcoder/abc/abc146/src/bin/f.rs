@@ -1,12 +1,26 @@
 use std::io;
 
-
 fn main() {
     let (n, m) = {
         let i = read::<usize>();
         (i[0], i[1])
     };
-    let s = read_one::<String>().chars().collect::<Vec<_>>();
+    let mut s = read_one::<String>().chars().collect::<Vec<_>>();
+    s.reverse();
+    let mut path = Vec::new();
+    let mut idx = 0;
+    while idx < n {
+        if (1..m + 1).all(|i| s[idx + i] == '1') { println!("-1"); return; }
+        for i in (0..m + 1).rev() {
+            if idx + i > n { continue; }
+            if s[idx + i] == '0' { idx += i; path.push(i); break; }
+        }
+    }
+    path.reverse();
+    for i in 0..path.len() {
+        if i == path.len() - 1 { println!("{}", path[i]); }
+        else { print!("{} ", path[i]); }
+    }
 }
 
 
