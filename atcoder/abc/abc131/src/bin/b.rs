@@ -2,20 +2,11 @@ use std::io;
 
 
 fn main() {
-    let (n, m) = {
-        let i = read::<usize>();
+    let (n, l) = {
+        let i = read::<isize>();
         (i[0], i[1])
     };
-
-    let an = read::<usize>();
-    let mut bc = Vec::new();
-    for _ in 0..m {
-        let (b, c) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-        bc.push((b, c));
-    }
+    let mut sum = (l..(l + n - 1)).sum::<isize>();
 }
 
 

@@ -2,19 +2,11 @@ use std::io;
 
 
 fn main() {
-    let (n, m) = {
-        let i = read::<usize>();
-        (i[0], i[1])
-    };
-
-    let an = read::<usize>();
-    let mut bc = Vec::new();
-    for _ in 0..m {
-        let (b, c) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-        bc.push((b, c));
+    let s = read_one::<String>().chars().collect::<Vec<_>>();
+    if s[0] == s[1] || s[1] == s[2] || s[2] == s[3] {
+        println!("Bad");
+    } else {
+        println!("Good");
     }
 }
 

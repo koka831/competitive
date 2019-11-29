@@ -2,20 +2,26 @@ use std::io;
 
 
 fn main() {
-    let (n, m) = {
+    let (a, b, c, d) = {
         let i = read::<usize>();
-        (i[0], i[1])
+        (i[0], i[1], i[2], i[3])
     };
+    println!("{}", b - a - (calc(b, c, d) - calc(a - 1, c, d)) + 1);
+}
 
-    let an = read::<usize>();
-    let mut bc = Vec::new();
-    for _ in 0..m {
-        let (b, c) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-        bc.push((b, c));
-    }
+fn calc(n: usize, a: usize, b: usize) -> usize {
+    let da: usize = n / a;
+    let db: usize = n / b;
+    da + db - n / lcm(a, b)
+}
+
+fn gcd(a: usize, b: usize) -> usize {
+    if b == 0 { a }
+    else { gcd(b, a % b) }
+}
+
+fn lcm(a: usize, b: usize) -> usize {
+    (a / gcd(a, b)) * b
 }
 
 

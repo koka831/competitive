@@ -1,21 +1,28 @@
 use std::io;
+use std::cmp::Ordering;
 
 
 fn main() {
-    let (n, m) = {
-        let i = read::<usize>();
-        (i[0], i[1])
+    let n = read_one::<usize>();
+    let fs = factors(n);
+    let s = fs.iter().sum::<usize>();
+    let ans = match (n * 2).cmp(&s) {
+        Ordering::Equal => "Perfect",
+        Ordering::Greater => "Deficient",
+        Ordering::Less => "Abundant"
     };
+    println!("{}", ans);
+}
 
-    let an = read::<usize>();
-    let mut bc = Vec::new();
-    for _ in 0..m {
-        let (b, c) = {
-            let i = read::<usize>();
-            (i[0], i[1])
-        };
-        bc.push((b, c));
+fn factors(n: usize) -> Vec<usize> {
+    let mut fs = Vec::new();
+    for i in 1..(n as f64).sqrt().ceil() as usize {
+        if n % i == 0 {
+            fs.push(i);
+            fs.push(n / i);
+        }
     }
+    fs
 }
 
 
