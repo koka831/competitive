@@ -2,12 +2,13 @@ use std::io;
 
 
 fn main() {
-    let n = read_one::<usize>();
+    let mut n = read_one::<usize>();
     if n % 2 != 0 { println!("0"); return; }
     let mut ans: usize = 0;
-    let mut x: usize = 10;
+    let mut x: usize = 5;
+    n /= 2;
     while x <= n {
-        ans += (n as f64 / x as f64).floor() as usize;
+        ans +=  n / x;
         x *= 5;
     }
     println!("{}", ans);
