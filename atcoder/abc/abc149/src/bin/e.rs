@@ -9,44 +9,61 @@ fn main() {
     };
     let mut an = read::<usize>();
     an.sort();
-    an.reverse();
-    let mut cnt: usize = 0;
     let mut l = 0;
-    let mut r = *an.iter().max().unwrap() * 2;
+    let mut r = *an.iter().max().unwrap() * 2 + 1;
     while r - l > 1 {
         let mid = (l + r) / 2;
-        let c = an.iter().map(|&a| {
-            // count x s.t. x + a >= m;
-            an.upper_bound(cmp::max(0, mid as isize - a as isize) as usize)
-        }).sum();
-        if c >= m {
-            l = mid;
-        } else {
-            r = mid;
-            cnt = c;
+        let mut c: usize = 0;
+        for &a in an.iter() {
+            let sub = mid as isize - a as isize;
+            c += n - an.lower_bound(cmp::max(0, sub as usize))
         }
+        if c >= m { l = mid; } else { r = mid; }
     }
-    let mut ans = (m - cnt) * r;
-    println!("{}:{}", cnt, r);
-    // rより大きいpairをcnt件作成する
-    println!("{}", ans);
+
+    let mut acc = vec![0; n + 1];
+    for i in 0..n { acc[i + 1] = acc[i] + an[i]; }
+
+    let mut cnt = 0;
+    let mut ans: usize = 0;
+    for i in 0..n {
+        let j = an.upper_bound(
+            cmp::max(0, (l as isize - an[i] as isize) as usize)
+        );
+        cnt += n - j;
+        ans += acc[n] - acc[j] + an[i] * (n - j);
+    }
+    println!("{}", cnt);
+    println!("{}", ans + (m - cnt) * l);
 }
 
 trait BinarySearch<T> {
+    fn lower_bound(&self, x: T) -> usize;
     fn upper_bound(&self, x: T) -> usize;
 }
 
 impl<T: Ord> BinarySearch<T> for [T] {
+    fn lower_bound(&self, x: T) -> usize {
+        let mut l = -1isize;
+        let mut r = self.len() as isize;
+        while r - l > 1isize {
+            let m = ((l + r) / 2) as usize;
+            if self[m] < x { l = m as isize; }
+            else { r = m as isize; }
+        }
+        r as usize
+    }
+
     fn upper_bound(&self, x: T) -> usize {
         let mut l = -1isize;
-        let mut r: isize = (self.len() - 1) as isize;
+        let mut r = self.len() as isize;
 
-        while (r - l) as usize > 1 {
-            let m = (l + r) / 2;
-            if self[m as usize] > x { l = m; }
-            else { r = m; }
+        while r - l > 1isize {
+            let m = ((l + r) / 2) as usize;
+            if self[m] <= x { l = m as isize; }
+            else { r = m as isize; }
         }
-        (l + 1isize) as usize
+        r as usize
     }
 }
 
